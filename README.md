@@ -8,7 +8,7 @@
 ### Testing:
 Test all problems:
 ```
-$ pytest test_[suite].py
+$ pytest -v test_[suite].py
 ```
 Test one function:
 ```
