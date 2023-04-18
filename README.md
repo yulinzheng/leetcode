@@ -1,9 +1,8 @@
 ### Naming Convention:
-* [function name]_[leetcode problem number](_[solution version])
-* For example:
-    * isAnagram_242
-    * reverseList_206_iterative
-    * removeElement_27_v1
+```
+[function name]_[leetcode problem number](_[solution version])
+```
+For example: `isAnagram_242`, `reverseList_206_iterative`, `removeElement_27_v1`
 
 ### Testing:
 Test all problems:
