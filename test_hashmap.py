@@ -31,3 +31,18 @@ def test_fourSumCount_454():
     assert result == 2
     result = code.fourSumCount_454([-1,-1], [-1,1], [-1,1], [1,-1])
     assert result == 6
+
+def test_canConstruct_383():
+    result = code.canConstruct_383('a', 'b')
+    assert result == False
+    result = code.canConstruct_383('aa', 'aab')
+    assert result == True
+
+def test_threeSum_15():
+    # result = code.threeSum_15_v1([-1,0,1,2,-1,-4])
+    # assert result == [[-1,-1,2],[-1,0,1]]
+    assert code.threeSum_15_v1([0,1,1]) == []
+    assert code.threeSum_15_v1([0,0,0]) == [[0,0,0]]
+
+def test_fourSum_18():
+    return

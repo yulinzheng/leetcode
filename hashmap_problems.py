@@ -6,13 +6,13 @@ def isAnagram_242(s, t):
     How would you adapt your solution to such a case?
 
     Time: O(m + n)
-    Space: O(m + n)
+    Space: O(1)
 
-    Space can be O(m) if we reuse the same hashmap.
+    Space can be less if we reuse the same hashmap.
         Simply decrement each occurrence by 1,
         and check if all values are 0 in the end.
 
-    Space can be O(1) if we use an array with 26 slots.
+    Space can be less if we use an array with 26 slots.
         See problem 1002.
     """
     hashmap_s = {}
@@ -67,7 +67,7 @@ def intersection_349(nums1, nums2):
     you may return the result in any order.
 
     Time: O(m + n)
-    Space: O(m)
+    Space: O(n)
     """
     count = {}
     for num in nums1:
@@ -166,3 +166,75 @@ def fourSumCount_454(nums1, nums2, nums3, nums4):
         if other in sum_2:
             count += sum_1[sum_num] * sum_2[other]
     return count
+
+def canConstruct_383(ransomNote, magazine):
+    """
+    Given two strings ransomNote and magazine,
+    return true if ransomNote can be constructed
+    by using the letters from magazine, false otherwise.
+
+    Each letter in magazine can only be used once.
+
+    Time: O(n)
+    Space: O(1)
+
+    Space can be less if we use an array with 26 slots.
+        See problem 1002.
+    """
+    # map each letter to its number of occurrences
+    dict_mag = {}
+    for letter in magazine:
+        if letter not in dict_mag:
+            dict_mag[letter] = 1
+        else:
+            dict_mag[letter] += 1
+    # reduce each letter's number of occurrences by 1
+    for letter in ransomNote:
+        if letter not in dict_mag:
+            return False
+        if dict_mag[letter] == 0:
+            return False
+        dict_mag[letter] -= 1
+    return True
+
+def threeSum_15_v1(nums):
+    """
+    Given an integer array nums, return all the triplets
+    [nums[i], nums[j], nums[k]] such that i != j, i != k, j != k,
+    and nums[i] + nums[j] + nums[k] == 0.
+
+    Solution set must not contain duplicate triplets.
+
+    Time: O(n^2)
+    Space: O(n)
+
+    Using two sets.
+    """
+    nums.sort()
+    end = len(nums)
+    result = set()
+
+    for i in range(end-2):
+        target = 0 - nums[i]
+        seen = set()
+        for j in range(i+1, end):
+            third = target - nums[j]
+            if third not in seen:
+                seen.add(nums[j])
+            else:
+                result.add((nums[i], nums[j], third))
+    return [list(triplet) for triplet in result]
+
+def threeSum_15_v2(nums):
+    """
+    Time: O()
+    Space: O()
+
+    Using two pointers.
+    """
+
+def fourSum_18(nums, target):
+    """
+
+    """
+    return
