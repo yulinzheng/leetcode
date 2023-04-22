@@ -46,5 +46,5 @@ def test_minSubArrayLen_209():
     assert code.minSubArrayLen_209_v3(4, [1,4,4]) == 1
 
 def test_generateMatrix_59():
-    assert code.generateMatrix_59(3) == [[1,2,3], [8,9,4],[7,6,5]]
+    assert code.generateMatrix_59(3) == [[1,2,3],[8,9,4],[7,6,5]]
     assert code.generateMatrix_59(1) == [[1]]
