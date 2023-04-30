@@ -217,6 +217,7 @@ def threeSum_15_v1(nums):
     for i in range(end-2):
         target = 0 - nums[i]
         seen = set()
+        # same logic as two-sum
         for j in range(i+1, end):
             third = target - nums[j]
             if third not in seen:
@@ -227,14 +228,24 @@ def threeSum_15_v1(nums):
 
 def threeSum_15_v2(nums):
     """
-    Time: O()
-    Space: O()
+    Time: O(n^2)
+    Space: O(1)
 
     Using two pointers.
     """
 
 def fourSum_18(nums, target):
     """
+    Given an array nums of n integers, return an array of
+    all the unique quadruplets [nums[a], nums[b], nums[c], nums[d]]
+    such that:
 
+        a, b, c, and d are distinct
+        nums[a] + nums[b] + nums[c] + nums[d] == target
+
+    You may return the answer in any order.
+
+    Time: O(n^3)
+    Space: O(1)
     """
     return

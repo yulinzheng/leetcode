@@ -11,7 +11,7 @@ def test_commonChars_1002():
     assert set(result)== set(["c","o"])
 
 def test_intersection_349():
-    result = code.intersection_349([1, 2, 2, 1], [2, 2])
+    result = code.intersection_349([1,2,2,1], [2,2])
     assert set(result) == set([2])
     result = code.intersection_349([4,9,5], [9,4,9,8,4])
     assert set(result) == set([9, 4])
@@ -45,4 +45,7 @@ def test_threeSum_15():
     assert code.threeSum_15_v1([0,0,0]) == [[0,0,0]]
 
 def test_fourSum_18():
-    return
+    result = code.fourSum_18([1,0,-1,0,-2,2], 0)
+    assert result == [[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]
+    result = code.fourSum_18([2,2,2,2,2], 8)
+    assert result == [[2,2,2,2]]
