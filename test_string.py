@@ -19,3 +19,22 @@ def test_reverseStr_541():
     assert result == "bacd"
     result = code.reverseStr_541("abcdefg", 8)
     assert result == "gfedcba"
+
+def test_reverseWords_15():
+    result = code.reverseWords_151("the sky is blue")
+    assert result == "blue is sky the"
+    result = code.reverseWords_151(" a good   example")
+    assert result == "example good a"
+
+def test_strStr_28():
+    result = code.strStr_28_v1("sadbutsad", "sad")
+    assert result == 0
+    result = code.strStr_28_v1("leetcode", "leeto")
+    assert result == -1
+    result = code.strStr_28_v2("sadbutsad", "sad")
+    assert result == 0
+    result = code.strStr_28_v2("leetcode", "leeto")
+    assert result == -1
+
+def test_repeatedSubstringPattern_45():
+    assert True == True
