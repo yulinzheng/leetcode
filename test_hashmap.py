@@ -39,10 +39,14 @@ def test_canConstruct_383():
     assert result == True
 
 def test_threeSum_15():
-    # result = code.threeSum_15_v1([-1,0,1,2,-1,-4])
-    # assert result == [[-1,-1,2],[-1,0,1]]
     assert code.threeSum_15_v1([0,1,1]) == []
     assert code.threeSum_15_v1([0,0,0]) == [[0,0,0]]
+    # result = code.threeSum_15_v1([-1,0,1,2,-1,-4])
+    # assert result == [[-1,-1,2],[-1,0,1]]
+    assert code.threeSum_15_v2([0,1,1]) == []
+    assert code.threeSum_15_v2([0,0,0]) == [[0,0,0]]
+    result = code.threeSum_15_v2([-1,0,1,2,-1,-4])
+    assert result == [[-1,-1,2],[-1,0,1]]
 
 def test_fourSum_18():
     result = code.fourSum_18([1,0,-1,0,-2,2], 0)

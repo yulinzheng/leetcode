@@ -233,6 +233,38 @@ def threeSum_15_v2(nums):
 
     Using two pointers.
     """
+    result = []
+    nums.sort()
+
+    for i in range(len(nums)):
+        # if all numbers > 0
+        if nums[i] > 0:
+            return result
+        # skip nums[i] duplicates
+        if i > 0 and nums[i] == nums[i-1]:
+            continue
+
+        # two pointers
+        left = i + 1
+        right = len(nums) - 1
+        target = 0 - nums[i]
+
+        while left < right:
+            if nums[left] + nums[right] > target:
+                right -= 1
+            elif nums[left] + nums[right] < target:
+                left += 1
+            else:
+                result.append([nums[i], nums[left], nums[right]])
+                # skip nums[left] and nums[right] duplicates
+                while right > left and nums[right] == nums[right-1]:
+                    right -= 1
+                while right > left and nums[left] == nums[left+1]:
+                    left += 1
+                # in/decrement pointers
+                right -= 1
+                left += 1
+    return result
 
 def fourSum_18(nums, target):
     """
