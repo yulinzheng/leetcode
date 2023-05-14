@@ -197,7 +197,7 @@ def canConstruct_383(ransomNote, magazine):
         dict_mag[letter] -= 1
     return True
 
-def threeSum_15_v1(nums):
+def threeSum_15(nums):
     """
     Given an integer array nums, return all the triplets
     [nums[i], nums[j], nums[k]] such that i != j, i != k, j != k,
@@ -205,29 +205,6 @@ def threeSum_15_v1(nums):
 
     Solution set must not contain duplicate triplets.
 
-    Time: O(n^2)
-    Space: O(n)
-
-    Using two sets.
-    """
-    nums.sort()
-    end = len(nums)
-    result = set()
-
-    for i in range(end-2):
-        target = 0 - nums[i]
-        seen = set()
-        # same logic as two-sum
-        for j in range(i+1, end):
-            third = target - nums[j]
-            if third not in seen:
-                seen.add(nums[j])
-            else:
-                result.add((nums[i], nums[j], third))
-    return [list(triplet) for triplet in result]
-
-def threeSum_15_v2(nums):
-    """
     Time: O(n^2)
     Space: O(1)
 
@@ -280,4 +257,35 @@ def fourSum_18(nums, target):
     Time: O(n^3)
     Space: O(1)
     """
-    return
+    result = []
+    nums.sort()
+
+    for k in range(len(nums)):
+        # skip nums[k] duplicates
+        if k > 0 and nums[k] == nums[k-1]:
+            continue
+        # same logic as 3 sum
+        for i in range(k+1, len(nums)):
+            # skip nums[i] duplicates
+            if i > k + 1 and nums[i] == nums[i-1]:
+                continue
+
+            left = i + 1
+            right = len(nums) - 1
+
+            while left < right:
+                if nums[left] + nums[right] > target - nums[i] - nums[k]:
+                    right -= 1
+                elif nums[left] + nums[right] < target - nums[i] - nums[k]:
+                    left += 1
+                else:
+                    result.append([nums[k], nums[i], nums[left], nums[right]])
+                    # skip nums[left] and nums[right] duplicates
+                    while left < right and nums[right] == nums[right-1]:
+                        right -= 1
+                    while left < right and nums[left] == nums[left+1]:
+                        left += 1
+
+                    right -= 1
+                    left += 1
+    return result
