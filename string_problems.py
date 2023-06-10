@@ -66,13 +66,68 @@ def strStr_28_v1(haystack, needle):
     except ValueError:
         return -1
 
-def strStr_28_v2(haystack, needle):
+"""
+KMP algorithm:
+    The basic idea is whenever we detect a mismatch,
+    we already know some of the characters in the text of the next window.
+    We take advantage of this information to avoid matching the characters
+    that we know will anyway match.
+
+    txt: text string
+    pat: pattern str
+    lps[i]: longest prefix that is also a suffix for pat[0..i]
+
+    For example,
+        lps[] for pattern "AAAA" is [0, 1, 2, 3]
+        lps[] for pattern "AAABAAA" is [0, 1, 2, 0, 1, 2, 3]
+"""
+
+def strStr_28_v2(text, pattern):
     """
     Time: O(n + m)
     Space: O(m), m being size of the prefix table
-
-    This is a classic problem that uses the KMP algorithm.
     """
+    # longest matching prefix suffix
+    lps = [0] * len(pattern)
+    j = 0 # points to end of current longest prefix
+    i = 1 # points to end of current longest suffix
+
+    while i < len(pattern):
+        if pattern[j] == pattern[i]:
+            # char matched
+            lps[i] = j + 1
+            j += 1
+            i += 1
+        else:
+            if j != 0:
+                # j moves to end of longest prefix for pattern[0: j-1]
+                j = lps[j-1]
+            else:
+                # i at unseen char, no match found
+                lps[i] = 0
+                i += 1
+
+    t = 0 # ptr for text
+    p = 0 # ptr for pattern
+    while t < len(text):
+        if text[t] == pattern[p]:
+            t += 1
+            p += 1
+        else:
+            if p != 0:
+                p = lps[p-1]
+            else:
+                t += 1
+        # if pattern has been found
+        if p == len(pattern):
+            return t - len(pattern)
+    return -1
+
+"""
+Z algorithm:
+"""
+def strStr_28_v3(haystack, needle):
+    return
 
 def repeatedSubstringPattern_459(s):
     """
