@@ -118,24 +118,49 @@ def strStr_28_v2(text, pattern):
                 p = lps[p-1]
             else:
                 t += 1
-        # if pattern has been found
+        # pattern has been found
         if p == len(pattern):
             return t - len(pattern)
+    # pattern not found
     return -1
 
-"""
-Z algorithm:
-"""
-def strStr_28_v3(haystack, needle):
-    return
-
-def repeatedSubstringPattern_459(s):
+def repeatedSubstringPattern_459_v1(s):
     """
-    Given a string s, check if it can be constructed by
-    taking a substring of it and appending multiple copies
-    of the substring together.
+    Given a string s, check if it can be constructed
+    by taking a substring of it and appending multiple
+    copies of the substring together.
 
-    Time: O()
-    Space: O()
+    Time: O(n^2)
+    Space: O(1)
+
+    Using brute force: 2 loops
     """
-    return
+    half = len(s)//2 + 1
+
+    # first loop
+    for i in range(1, half):
+        substring = s[:i]
+
+        if len(s) % len(substring) == 0:
+            num_copies = len(s) // len(substring)
+            # second loop
+            if s == substring * num_copies:
+                return True
+
+    return False
+
+def repeatedSubstringPattern_459_v2(s):
+    """
+    Time: O(n)
+    Space: O(n)
+
+    Using KMP:
+                For a true return value, s must have
+                the same longest prefix and suffix,
+                and they're offset by len(substring).
+                And len(s) must be divisible by offset.
+    For example:
+                s:          abababab
+                l_prefix:   ababab
+                l_suffix:     ababab
+    """

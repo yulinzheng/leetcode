@@ -37,4 +37,19 @@ def test_strStr_28():
     assert result == -1
 
 def test_repeatedSubstringPattern_45():
-    assert True == True
+    result = code.repeatedSubstringPattern_459_v1("abab")
+    assert result == True
+    result = code.repeatedSubstringPattern_459_v1("aabaab")
+    assert result == True
+    result = code.repeatedSubstringPattern_459_v1("abcabc")
+    assert result == True
+    result = code.repeatedSubstringPattern_459_v1("ababca")
+    assert result == False
+    result = code.repeatedSubstringPattern_459_v2("abab")
+    assert result == True
+    result = code.repeatedSubstringPattern_459_v2("aabaab")
+    assert result == True
+    result = code.repeatedSubstringPattern_459_v2("abcabc")
+    assert result == True
+    result = code.repeatedSubstringPattern_459_v2("ababca")
+    assert result == False
