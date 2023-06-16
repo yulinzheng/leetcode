@@ -1,4 +1,4 @@
-import hashmap_problems as code
+import hashtable_problems as code
 
 def test_isAnagram_242():
     assert code.isAnagram_242('anagram', 'nagaram') == True
