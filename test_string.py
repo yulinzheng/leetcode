@@ -36,7 +36,7 @@ def test_strStr_28():
     result = code.strStr_28_v2("leetcode", "leeto")
     assert result == -1
 
-def test_repeatedSubstringPattern_45():
+def test_repeatedSubstringPattern_459():
     result = code.repeatedSubstringPattern_459_v1("abab")
     assert result == True
     result = code.repeatedSubstringPattern_459_v1("aabaab")
@@ -49,7 +49,7 @@ def test_repeatedSubstringPattern_45():
     assert result == True
     result = code.repeatedSubstringPattern_459_v2("aabaab")
     assert result == True
-    result = code.repeatedSubstringPattern_459_v2("abcabc")
-    assert result == True
-    result = code.repeatedSubstringPattern_459_v2("ababca")
+    result = code.repeatedSubstringPattern_459_v2("abac")
     assert result == False
+    result = code.repeatedSubstringPattern_459_v2("aaaa")
+    assert result == True

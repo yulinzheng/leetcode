@@ -104,7 +104,7 @@ def strStr_28_v2(text, pattern):
                 j = lps[j-1]
             else:
                 # i at unseen char, no match found
-                lps[i] = 0
+                # lps[i] = 0
                 i += 1
 
     t = 0 # ptr for text
@@ -164,3 +164,32 @@ def repeatedSubstringPattern_459_v2(s):
                 l_prefix:   ababab
                 l_suffix:     ababab
     """
+    lps = [0] * len(s)
+    generate_lps(s, lps)
+
+    if lps[-1] == 0:
+        return False
+
+    len_sub = len(s) - lps[-1]
+    if len(s) % len_sub == 0:
+        return True
+    else:
+        return False
+
+def generate_lps(s, lps):
+    j = 0 # pts to end of longest prefix
+    i = 1 # pts to end of longest suffix
+
+    while i < len(s):
+        if s[j] == s[i]:
+            # char matched
+            lps[i] = j + 1
+            j += 1
+            i += 1
+        else:
+            if j == 0:
+                # unseen char, j at back 0
+                i += 1
+            else:
+                j = lps[j - 1]
+    return
