@@ -175,3 +175,94 @@ def evalRPN_150(tokens):
         else:
             stack.append(int(token))
     return stack.pop()
+
+def maxSlidingWindow_239_v1(nums, k):
+    """
+    You are given an array of integers nums, there is a sliding window
+    of size k moving through the array. Return the max sliding window.
+
+    Time: O(n * k)
+          because max() takes O(k)
+    """
+    i = 0
+    j = i + k
+    result = []
+
+    while j < len(nums) + 1:
+        result.append(max(nums[i : j]))
+        i += 1
+        j += 1
+    return result
+
+"""
+Time: O(n)
+Space: O(k)
+
+To achieve linear runtime, we need to define a queue that:
+    1. is monotonically decreasing
+    2. keeps track of max at index 0
+
+Implementation:
+1. pop num: only pop when num == queue[0], aka the max.
+2. push num: compare num with items in queue,going from
+   end to front (aka min to max). Pop items <= num.
+"""
+class MonoQue():
+    def __init__(self):
+        self.que = deque()
+
+    def pop(self, val):
+        if val == self.que[0]:
+            self.que.popleft()
+
+    def push(self, val):
+        while self.que and val > self.que[-1]:
+            self.que.pop()
+        self.que.append(val)
+
+    def front(self):
+        # returns the max of current que
+        return self.que[0]
+
+def maxSlidingWindow_239_v2(nums, k):
+    que = MonoQue()
+    result = []
+    # push the first k items to que
+    for i in range(k):
+        que.push(nums[i])
+    # append max of first k items
+    result.append(que.front())
+    # push and pop for the rest
+    for j in range(k, len(nums)):
+        i = j - k
+        que.pop(nums[i])
+        que.push(nums[j])
+        result.append(que.front())
+    return result
+
+def topKFrequent_347_v1(nums, k):
+    """
+    Given an integer array nums and an integer k,
+    return the k most frequent elements.
+    You may return the answer in any order.
+
+    Time: O(nlogn)
+    Space: O(n)
+    """
+    count = {}
+    for num in nums:
+        if num not in count:
+            count[num] = 1
+        else:
+            count[num] += 1
+    sorted_count = sorted(count.items(), key=lambda item: item[1])
+    # get the last k keys from sorted_count
+    result = []
+    i = len(sorted_count) - k
+    j = len(sorted_count)
+    for kv in sorted_count[i : j]:
+        result.append(kv[0])
+    return result
+
+def topKFrequent_347_v2(nums, k):
+    pass

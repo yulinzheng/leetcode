@@ -36,3 +36,19 @@ def test_evalRPN_150():
     assert code.evalRPN_150(["4","13","5","/","+"]) == 6
     tokens = ["10","6","9","3","+","-11","*","/","*","17","+","5","+"]
     assert code.evalRPN_150(tokens) == 22
+
+def test_maxSlidingWindow_239():
+    assert code.maxSlidingWindow_239_v1([1], 1) == [1]
+    result = code.maxSlidingWindow_239_v1([1,3,-1,-3,5,3,6,7], 3)
+    assert result == [3,3,5,5,6,7]
+    assert code.maxSlidingWindow_239_v2([1], 1) == [1]
+    result = code.maxSlidingWindow_239_v2([1,3,-1,-3,5,3,6,7], 3)
+    assert result == [3,3,5,5,6,7]
+
+def test_topKFrequent_347():
+    assert code.topKFrequent_347_v1([1,1,1,2,2,3], 2) == [2,1]
+    assert code.topKFrequent_347_v1([1], 1) == [1]
+    assert code.topKFrequent_347_v1([4,1,-1,2,-1,2,3], 2) == [-1, 2]
+    assert code.topKFrequent_347_v2([1,1,1,2,2,3], 2) == [2,1]
+    assert code.topKFrequent_347_v2([1], 1) == [1]
+    assert code.topKFrequent_347_v2([4,1,-1,2,-1,2,3], 2) == [-1, 2]
