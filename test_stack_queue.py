@@ -46,9 +46,9 @@ def test_maxSlidingWindow_239():
     assert result == [3,3,5,5,6,7]
 
 def test_topKFrequent_347():
-    assert code.topKFrequent_347_v1([1,1,1,2,2,3], 2) == [2,1]
+    assert code.topKFrequent_347_v1([1,1,1,2,2,3], 2) == [1,2]
     assert code.topKFrequent_347_v1([1], 1) == [1]
-    assert code.topKFrequent_347_v1([4,1,-1,2,-1,2,3], 2) == [-1, 2]
-    assert code.topKFrequent_347_v2([1,1,1,2,2,3], 2) == [2,1]
+    assert code.topKFrequent_347_v1([4,1,-1,2,-1,2,3], 2) == [2, -1]
+    assert code.topKFrequent_347_v2([1,1,1,2,2,3], 2) == [1,2]
     assert code.topKFrequent_347_v2([1], 1) == [1]
-    assert code.topKFrequent_347_v2([4,1,-1,2,-1,2,3], 2) == [-1, 2]
+    assert code.topKFrequent_347_v2([4,1,-1,2,-1,2,3], 2) == [2, -1]

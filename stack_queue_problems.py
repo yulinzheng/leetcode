@@ -260,9 +260,41 @@ def topKFrequent_347_v1(nums, k):
     result = []
     i = len(sorted_count) - k
     j = len(sorted_count)
-    for kv in sorted_count[i : j]:
+    k_lst = sorted_count[i : j]
+    k_lst.reverse()
+    for kv in k_lst:
         result.append(kv[0])
     return result
 
+import heapq
+"""
+Using a priority queue of size k:
+    - heapq.heappush(heap, item)
+    - heapq.heappop(heap)
+Python's heapq is implemented as a min heap.
+"""
 def topKFrequent_347_v2(nums, k):
-    pass
+    """
+    Time: O(nlogk)
+    Space: O(n)
+
+    """
+    count = {}
+    for num in nums:
+        if num not in count:
+            count[num] = 1
+        else:
+            count[num] += 1
+
+    que = []
+    for num, count in count.items():
+        # heappush and heappop takes O(logk)
+        heapq.heappush(que, (count, num))
+        if len(que) > k:
+            heapq.heappop(que)
+
+    result = [0] * k
+    # reverse the order of min heap
+    for i in range(k):
+        result[k-1-i] = heapq.heappop(que)[1]
+    return result
