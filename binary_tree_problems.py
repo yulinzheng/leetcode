@@ -104,14 +104,17 @@ def binaryTreePaths_257(root):
     def traverse(curr, path, result):
         path.append(curr.val)
         if not curr.left and not curr.right:
+            # found leaf node
             str_path = "->".join(map(str, path))
             result.append(str_path)
             return
         if curr.left:
             traverse(curr.left, path, result)
+            # backtrack
             path.pop()
         if curr.right:
             traverse(curr.right, path, result)
+            # backtrack
             path.pop()
 
     if not root:
@@ -120,3 +123,70 @@ def binaryTreePaths_257(root):
         result = []
         traverse(root, [], result)
         return result
+
+def sumOfLeftLeaves_404(root):
+    """
+    Given the root of a binary tree,
+    return the sum of all left leaves.
+    """
+    def traverse(node, is_left):
+        if not node:
+            return 0
+        if not node.left and not node.right:
+            if is_left:
+                # found left leaf
+                return node.val
+            else:
+                # found right leaf
+                return 0
+        left_sum = traverse(node.left, True)
+        right_sum = traverse(node.right, False)
+        return left_sum + right_sum
+    return traverse(root, False)
+
+def findBottomLeftValue_513(root):
+    """
+    Given the root of a binary tree, return the leftmost value
+    in the last row of the tree.
+    """
+
+def hasPathSum_112_v1(root, targetSum):
+    """
+    Given the root of a binary tree and an integer targetSum,
+    return true if the tree has a root-to-leaf path such that
+    adding up all the values along the path equals targetSum.
+    """
+    def traverse(node, target):
+        if not node.left and not node.right:
+            if target == 0:
+                return True
+            else:
+                return False
+        if node.left:
+            target -= node.left.val
+            if traverse(node.left, target):
+                return True
+            # backtrack
+            target += node.left.val
+        if node.right:
+            target -= node.right.val
+            if traverse(node.right, target):
+                return True
+            # backtrack
+            target += node.right.val
+
+    if not root:
+        return False
+    return traverse(root, targetSum - root.val)
+
+def hasPathSum_112_v2(root, targetSum):
+    if not root:
+        return False
+    if not root.left and not root.right:
+        if root.val == targetSum:
+            return True
+        else:
+            return False
+    left = hasPathSum_112_v2(root.left, targetSum - root.val)
+    right = hasPathSum_112_v2(root.right, targetSum - root.val)
+    return left or right
