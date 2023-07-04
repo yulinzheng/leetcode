@@ -149,6 +149,26 @@ def findBottomLeftValue_513(root):
     Given the root of a binary tree, return the leftmost value
     in the last row of the tree.
     """
+    def traverse(node, depth):
+        nonlocal max_depth
+        nonlocal result
+        # found leaf node
+        if not node.left and not node.right:
+            # found deeper leaf node
+            if max_depth < depth:
+                max_depth = depth
+                result = node.val
+            return
+        # check node.left first to ensure leftmost
+        if node.left:
+            traverse(node.left, depth+1)
+        if node.right:
+            traverse(node.right, depth+1)
+
+    max_depth = 0
+    result = None
+    traverse(root, 1)
+    return result
 
 def hasPathSum_112_v1(root, targetSum):
     """
@@ -190,3 +210,11 @@ def hasPathSum_112_v2(root, targetSum):
     left = hasPathSum_112_v2(root.left, targetSum - root.val)
     right = hasPathSum_112_v2(root.right, targetSum - root.val)
     return left or right
+
+def buildTree_106(inorder, postorder):
+    """
+    Given two integer arrays inorder and postorder where
+    inorder is the inorder traversal of a binary tree and
+    postorder is the postorder traversal of the same tree,
+    construct and return the binary tree.
+    """
